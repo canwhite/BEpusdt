@@ -1,0 +1,50 @@
+# BEpusdt 配置文件示例 - 无Telegram Bot版本
+# 此版本不包含Telegram Bot配置，适合只需要API支付功能的场景
+
+app_uri = "http://localhost:8080"
+auth_token = "your_secure_token_here"  # 必须设置，用于API签名验证
+listen = ":8080"
+output_log = ""
+static_path = ""
+sqlite_path = "./data/bepusdt.db"
+
+# 支付配置
+[pay]
+trx_atom = 0.000001         # TRX最小精度
+trx_rate = ""               # TRX汇率，留空自动获取
+usdt_atom = 0.000001        # USDT最小精度
+usdc_atom = 0.000001        # USDC最小精度
+usdt_rate = ""              # USDT汇率，留空自动获取
+usdc_rate = ""              # USDC汇率，留空自动获取
+expire_time = 1800          # 订单过期时间(秒)
+trade_is_confirmed = false  # 是否需要交易确认
+payment_amount_min = 1.0    # 最小支付金额
+payment_amount_max = 10000.0 # 最大支付金额
+
+# 钱包地址配置 (至少配置一个)
+wallet_address = [
+    "Txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",  # TRON地址示例
+    "0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # EVM地址示例
+]
+
+# EVM RPC节点配置
+[evm_rpc]
+bsc = "https://bsc-dataseed1.binance.org/"          # BSC网络RPC
+ethereum = "https://eth-mainnet.alchemyapi.io/v2/your-api-key"  # 以太坊网络RPC
+polygon = "https://polygon-rpc.com/"                # Polygon网络RPC
+arbitrum = "https://arb1.arbitrum.io/rpc"           # Arbitrum网络RPC
+plasma = "https://rpc.plasma.network"              # Plasma网络RPC
+base = "https://mainnet.base.org"                   # Base网络RPC
+xlayer = "https://rpc.xlayer.tech/"                # X-Layer网络RPC
+solana = "https://api.mainnet-beta.solana.com"      # Solana网络RPC
+aptos = "https://fullnode.mainnet.aptoslabs.com/v1" # Aptos网络RPC
+
+# TRON网络配置
+tron_grpc_node = "grpc.trongrid.io:50091"
+aptos_rpc_node = "https://fullnode.mainnet.aptoslabs.com/v1"
+
+# Webhook配置 (可选)
+webhook_url = "https://your-domain.com/webhook"  # 接收事件通知的URL
+
+# 注意：此配置文件不包含Telegram Bot配置
+# 如果需要Telegram Bot通知功能，请参考 conf.example.toml 添加 [bot] 配置块

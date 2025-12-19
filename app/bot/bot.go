@@ -15,6 +15,12 @@ var api *bot.Bot
 var err error
 
 func Init() error {
+	// 如果没有配置Bot Token，跳过Bot初始化
+	if conf.BotToken() == "" {
+		log.Info("Telegram Bot token未配置，跳过Bot初始化")
+		return nil
+	}
+
 	var opts = []bot.Option{
 		//bot.WithDebug(),
 		bot.WithCheckInitTimeout(time.Minute),
@@ -28,10 +34,15 @@ func Init() error {
 }
 
 func Start(ctx context.Context) {
+	// 如果Bot未初始化，跳过Bot启动
+	if api == nil {
+		log.Info("Telegram Bot未初始化，跳过Bot启动")
+		return
+	}
+
 	var me, err2 = api.GetMe(ctx)
 	if err2 != nil {
-		panic(err2)
-
+		log.Error("Telegram Bot启动失败：", err2)
 		return
 	}
 
@@ -96,6 +107,11 @@ func Start(ctx context.Context) {
 }
 
 func SendMessage(p *bot.SendMessageParams) {
+	// 如果Bot未初始化，跳过消息发送
+	if api == nil {
+		return
+	}
+
 	if p.ChatID == nil {
 		p.ChatID = conf.BotAdminID()
 	}
@@ -105,7 +121,6 @@ func SendMessage(p *bot.SendMessageParams) {
 
 	_, err := api.SendMessage(ctx, p)
 	if err != nil {
-
 		log.Warn("Bot Send Message Error:", err.Error())
 	}
 }

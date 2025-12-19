@@ -46,10 +46,10 @@ func Init() error {
 		return fmt.Errorf("配置数据解析失败：%w", err)
 	}
 
-	if BotToken() == "" || BotAdminID() == 0 {
-
-		return errors.New("telegram bot 参数 admin_id 或 token 均不能为空")
-	}
+	// 移除Telegram Bot强制配置检查，使其变为可选功能
+	// if BotToken() == "" || BotAdminID() == 0 {
+	// 	return errors.New("telegram bot 参数 admin_id 或 token 均不能为空")
+	// }
 
 	return nil
 }
@@ -185,12 +185,16 @@ func BotAdminID() int64 {
 }
 
 func BotNotifyTarget() string {
+	// 如果没有配置GroupID，检查AdminID，都没有则返回空字符串
 	if cfg.Bot.GroupID != "" {
-
 		return cfg.Bot.GroupID
 	}
 
-	return cast.ToString(cfg.Bot.AdminID)
+	if cfg.Bot.AdminID > 0 {
+		return cast.ToString(cfg.Bot.AdminID)
+	}
+
+	return ""
 }
 
 func GetWalletAddress() []string {
