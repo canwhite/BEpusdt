@@ -1,6 +1,7 @@
-services: 
-  bepusdt: 
-    image: v03413/bepusdt:latest # 如果想使用最新的开发版本，可以将镜像名 latest 替换为 beta
+services:
+  bepusdt:
+    build: .  # 使用本地代码构建
+    image: bepusdt:local  # 本地构建的镜像标签
     container_name: bepusdt 
     restart: unless-stopped 
     ports: 

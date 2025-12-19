@@ -1,7 +1,6 @@
 package conf
 
 import (
-	"errors"
 	"flag"
 	"fmt"
 	"github.com/pelletier/go-toml/v2"
