@@ -18,6 +18,6 @@ COPY --from=builder /go/release/bepusdt /usr/local/bin/bepusdt
 # 设置时区
 RUN ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-EXPOSE 8080
+EXPOSE 8085
 ENTRYPOINT ["bepusdt"]
 CMD ["-conf", "/usr/local/bepusdt/conf.toml"]

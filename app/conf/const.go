@@ -6,7 +6,7 @@ const (
 	DefaultUsdcCnyRate      = 6.4      // 默认USDC基准汇率
 	DefaultTrxCnyRate       = 0.95     // 默认TRX基准汇率
 	defaultAuthToken        = "123234" // 默认授权码
-	defaultListen           = ":8080"  // 默认监听地址
+	defaultListen           = ":8085"  // 默认监听地址
 	defaultPaymentMinAmount = 0.01
 	defaultPaymentMaxAmount = 99999
 	defaultUsdtAtomicity    = 0.01 // USDT原子精度

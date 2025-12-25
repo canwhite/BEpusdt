@@ -3,7 +3,7 @@ app_uri = ""
 # 认证Token，对接会用到这个参数【很重要建议修改】
 auth_token = "123234"
 # 服务器HTTP监听地址
-listen = ":8080"
+listen = ":8085"
 # 静态资源路径，例如：/root/bepusdt/static；通过此参数可自定义模板，参考static目录，如非必要不建议修改。
 static_path = ""
 # SQLite数据库路径
